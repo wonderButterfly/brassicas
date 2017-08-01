@@ -34,6 +34,10 @@ All cards inherit from an abstract class;
 | faceUpURL | `string` | path to image asset |
 | isSelected | `boolean` | user selection |
 
+| method | description |
+|--|--|
+| `select()` | creates new instance of selected cards with opposite `isSelected` value |
+
 
 #### Joker card
 
@@ -53,4 +57,4 @@ All cards inherit from an abstract class;
 
 | method | description |
 |--|--|
-| `static compare(Brassica A, Brassica B): boolean` | returns whether the two specified arguments are of the same brassica type, i.e. `A.brassica === B.brassica` |
+| `abstract compare(Brassica A, Brassica B): boolean` | returns whether the two specified arguments are of the same brassica type, i.e. `A.brassica === B.brassica` |
