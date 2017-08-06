@@ -4,10 +4,10 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
+import './internal/store';
+
 import * as ReactRedux from 'react-redux';
 const { Provider } = ReactRedux;
-
-impo
 
 ReactDOM.render(
   <Provider>
