@@ -37,5 +37,5 @@ export interface State {
   f2: RomanescoCard;
   f3: RomanescoCard;
   f4: RomanescoCard;
-  h1: JokerCard;
+  g1: JokerCard;
 }

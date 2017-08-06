@@ -1,24 +1,52 @@
-abstract class Card {
+export interface ICard {
+  URL: string;
+  isActive: boolean;
+  setId: (id: string) => Card;
+  getId: () => string;
+}
+
+export interface IActiveCard extends ICard {
+  isSelected: boolean;
+}
+
+export interface IInactiveCard extends ICard {
+  name: string;
+}
+
+abstract class Card implements ICard {
+  private id: string;
+
   constructor(
     readonly URL: string,
     readonly isActive: boolean
-  ) { }
-}
+  ) {
+    this.id = '';
+  }
 
-export class InactiveCard extends Card {
-  constructor(path: string) {
-    super(path, false)
+  public setId(id: string): Card {
+    this.id = id;
+    return this;
+  }
+
+  public getId(): string {
+    return this.id;
   }
 }
 
-abstract class ActiveCard extends Card {
+export class InactiveCard extends Card implements IInactiveCard {
+  constructor(path: string, public name: string) {
+    super(path, false);
+  }
+}
+
+abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
 
   constructor(readonly flippedURL: string) {
-    super('/', true)
+    super('/', true);
   }
 
-  abstract select(): any
+  abstract select(): any;
 }
 
 abstract class BrassicaCard extends ActiveCard {
@@ -26,7 +54,7 @@ abstract class BrassicaCard extends ActiveCard {
     readonly brassica: string, 
     path: string
   ) {
-    super(path)
+    super(path);
   }
 
 
@@ -38,22 +66,22 @@ abstract class BrassicaCard extends ActiveCard {
 
 export class CabbageCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('cabbage', '/')
+    super('cabbage', '/');
   }
 
   select(): CabbageCard {
-    return new CabbageCard(!this.isSelected)
+    return new CabbageCard(!this.isSelected);
   }
 
 }
 
 export class BroccoliCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('broccoli', '/')
+    super('broccoli', '/');
   }
 
   select(): BroccoliCard {
-    return new BroccoliCard(!this.isSelected)
+    return new BroccoliCard(!this.isSelected);
   }
 }
 
@@ -69,31 +97,31 @@ export class CauliflowerCard extends BrassicaCard {
 
 export class KaleCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('kale', '/')
+    super('kale', '/');
   }
 
   select(): KaleCard {
-    return new KaleCard(!this.isSelected)
+    return new KaleCard(!this.isSelected);
   }
 }
 
 export class BrusselsSproutCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('brussels sprout', '/')
+    super('brussels sprout', '/');
   }
 
   select(): BrusselsSproutCard {
-    return new BrusselsSproutCard(!this.isSelected)
+    return new BrusselsSproutCard(!this.isSelected);
   }
 }
 
 export class RomanescoCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('romanesco', '/')
+    super('romanesco', '/');
   }
 
   select(): RomanescoCard {
-    return new RomanescoCard(!this.isSelected)
+    return new RomanescoCard(!this.isSelected);
   }
 }
 
@@ -106,6 +134,6 @@ export class JokerCard extends ActiveCard {
   }
 
   select(): void {
-    this.behaviors[Math.floor(Math.random() * this.behaviors.length)]()
+    this.behaviors[Math.floor(Math.random() * this.behaviors.length)]();
   }
 }

@@ -4,14 +4,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-import './internal/store';
+import { store } from './internal/store';
 
 import * as ReactRedux from 'react-redux';
 const { Provider } = ReactRedux;
 
 ReactDOM.render(
-  <Provider>
-    <App />
+  <Provider store={store}>
+    <App/>
   </Provider>,
   document.getElementById('root') as HTMLElement
 );
