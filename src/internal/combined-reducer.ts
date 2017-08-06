@@ -4,9 +4,6 @@ import card from './reducers/card';
 
 export default combineReducers({ 
   score, 
-  rowA: rows, 
-  rowB: rows, 
-  rowC: rows, 
-  rowD: rows, 
-  rowE: rows 
+  a1: card('cabbage'),
+  a2: card('cabbage')
 })

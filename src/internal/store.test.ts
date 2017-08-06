@@ -1,5 +1,9 @@
 import { store } from './store';
+import { CabbageCard } from './card';
 import { State } from './state';
+
+beforeEach(() => {
+})
 
 it('creates a valid store', () => {
   expect(store).toHaveProperty('getState')
@@ -9,11 +13,8 @@ it('creates a valid store', () => {
 
 it('creates a store with a valid state', () => {
   const state: State = store.getState();
-  expect(state).toHaveProperty('rowA')
-  expect(state).toHaveProperty('rowB')
-  expect(state).toHaveProperty('rowC')
-  expect(state).toHaveProperty('rowD')
   expect(state).toHaveProperty('score')
+  expect(state.a1).toBeInstanceOf(CabbageCard)
 })
 
 it('creates a store with correct inital values', () => {

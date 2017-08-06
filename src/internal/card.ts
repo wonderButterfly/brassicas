@@ -14,10 +14,11 @@ export class InactiveCard extends Card {
 abstract class ActiveCard extends Card {
   readonly isSelected: boolean;
 
-  constructor(path: string) {
-    super(path, true)
+  constructor(readonly flippedURL: string) {
+    super('/', true)
   }
 
+  abstract select(): any
 }
 
 abstract class BrassicaCard extends ActiveCard {
@@ -28,7 +29,6 @@ abstract class BrassicaCard extends ActiveCard {
     super(path)
   }
 
-  abstract select(): any
 
   compare(card: Card): boolean {
     if (card instanceof BrassicaCard) return this.brassica === card.brassica;
@@ -79,7 +79,7 @@ export class KaleCard extends BrassicaCard {
 
 export class BrusselsSproutCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('kale', '/')
+    super('brussels sprout', '/')
   }
 
   select(): BrusselsSproutCard {
@@ -89,7 +89,7 @@ export class BrusselsSproutCard extends BrassicaCard {
 
 export class RomanescoCard extends BrassicaCard {
   constructor(isSelected: boolean = false) {
-    super('kale', '/')
+    super('romanesco', '/')
   }
 
   select(): RomanescoCard {
@@ -99,5 +99,13 @@ export class RomanescoCard extends BrassicaCard {
 
 
 export class JokerCard extends ActiveCard {
+  constructor(
+    readonly behaviors: Array<() => {}>,
+  ) {
+    super('/');
+  }
 
+  select(): void {
+    this.behaviors[Math.floor(Math.random() * this.behaviors.length)]()
+  }
 }
