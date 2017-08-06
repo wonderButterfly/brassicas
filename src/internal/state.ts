@@ -8,9 +8,11 @@ import {
   JokerCard 
 } from './card';
 
+import { Board } from './board';
+
 export interface State {
   score: number;
-  board: any;
+  board: Board;
   a1: CabbageCard;
   a2: CabbageCard;
   a3: CabbageCard;

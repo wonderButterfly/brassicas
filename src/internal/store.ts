@@ -2,4 +2,4 @@ import { createStore, Store } from 'redux';
 import { State } from './state';
 import reducers from './combined-reducer';
 
-export const store: Store<State> = createStore(reducers)
+export const store: Store<State> = createStore<State>(reducers)
