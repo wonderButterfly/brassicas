@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Card.css';
 
-import { ICard, IInactiveCard } from './internal/card';
+import { ICard, IInactiveCard, IActiveCard } from './internal/card';
 
 interface Props {
   card: ICard
@@ -10,16 +10,18 @@ interface Props {
 
 export default function Card({ card, selectDispatch }: Props) {
   if (card.isActive) {
-    return FaceDownCard(selectDispatch)
+    const { isSelected } = card as IActiveCard;
+    return FaceDownCard(isSelected, selectDispatch)
   } else {
-    const inactiveCard = card as IInactiveCard
-    return InactiveCard(inactiveCard.URL, inactiveCard.name)
+    const {URL, name} = card as IInactiveCard
+    return InactiveCard(URL, name)
   }
 }
 
-function FaceDownCard(select: () => any) {
+function FaceDownCard(isSelected: boolean, select: () => any) {
   const flippedURL = '/assets/img/cards/flipped.jpg';
-  return <div className="card" onClick={select}>
+  const selected = isSelected ? 'selected' : 'unselected'
+  return <div className={`card card-${selected}`} onClick={select}>
     <img className="card-img-facedown" src={flippedURL} />
   </div>
 }

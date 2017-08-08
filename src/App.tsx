@@ -8,6 +8,8 @@ import { ICard } from './internal/card';
 
 import Board from './Board';
 
+import { getSelectAction } from './internal/actions';
+
 const logo = require('./logo.svg');
 
 class App extends React.Component<StateProps & DispatchProps, {}> {
@@ -19,7 +21,7 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          <Board order={this.props.board.order} cards={this.props.cards}/>
+          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select}/>
         </div>
         
       </div>
@@ -35,7 +37,7 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  getUser: () => void;
+  select: (id: string) => void;
 }
 
 function mapStatetoProps(state: State): StateProps {
@@ -72,7 +74,7 @@ function mapStatetoProps(state: State): StateProps {
 
 function mapDispatchtoProps(dispatch:any): DispatchProps {
   return {
-    getUser: (): void => dispatch()
+    select: (id: string): void => dispatch(getSelectAction(id))
   }
 }
 

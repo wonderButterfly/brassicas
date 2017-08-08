@@ -1,10 +1,14 @@
 .card{
   border: 1px solid blue;
   display: inline-block;
-  max-width: 150px;
+  max-width: 100px;
 }
 
 .card-img-facedown{
   width: 100%;
   height: auto
+}
+
+.card-selected{
+  border: 1px solid red;
 }

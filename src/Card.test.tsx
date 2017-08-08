@@ -4,5 +4,5 @@ import Card from './Card';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Card card={}/>, div);
+  ReactDOM.render(<Card />, div);
 });

@@ -33,5 +33,5 @@ export default combineReducers<State>({
   f2: card(RomanescoCard, 'f2'),
   f3: card(RomanescoCard, 'f3'),
   f4: card(RomanescoCard, 'f4'),
-  g1: joker
+  g1: joker('g1')
 })

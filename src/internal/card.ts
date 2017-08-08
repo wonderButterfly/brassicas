@@ -65,7 +65,7 @@ abstract class BrassicaCard extends ActiveCard {
 }
 
 export class CabbageCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('cabbage', '/');
   }
 
@@ -76,7 +76,7 @@ export class CabbageCard extends BrassicaCard {
 }
 
 export class BroccoliCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('broccoli', '/');
   }
 
@@ -86,7 +86,7 @@ export class BroccoliCard extends BrassicaCard {
 }
 
 export class CauliflowerCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('cauliflower', '/')
   }
 
@@ -96,7 +96,7 @@ export class CauliflowerCard extends BrassicaCard {
 }
 
 export class KaleCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('kale', '/');
   }
 
@@ -106,7 +106,7 @@ export class KaleCard extends BrassicaCard {
 }
 
 export class BrusselsSproutCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('brussels sprout', '/');
   }
 
@@ -116,7 +116,7 @@ export class BrusselsSproutCard extends BrassicaCard {
 }
 
 export class RomanescoCard extends BrassicaCard {
-  constructor(isSelected: boolean = false) {
+  constructor(readonly isSelected: boolean = false) {
     super('romanesco', '/');
   }
 
@@ -129,11 +129,12 @@ export class RomanescoCard extends BrassicaCard {
 export class JokerCard extends ActiveCard {
   constructor(
     readonly behaviors: Array<() => {}>,
+    readonly isSelected: boolean = false,
   ) {
     super('/');
   }
 
-  select(): void {
-    this.behaviors[Math.floor(Math.random() * this.behaviors.length)]();
+  select(): JokerCard {
+    return new JokerCard(this.behaviors, !this.isSelected);
   }
 }
