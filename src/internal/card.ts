@@ -41,15 +41,26 @@ export class InactiveCard extends Card implements IInactiveCard {
   }
 }
 
+class DisplayingCard<T> extends Card {
+  constructor(path: string, private c:{ new(): T}) {
+    super(path, false)
+  }
+
+  revert(): T {
+    return new this.c()
+  }
+}
+
 abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
 
-  constructor(readonly flippedURL: string) {
+  constructor(protected flippedURL: string) {
     super('/', true);
   }
 
   abstract select(): any;
   abstract compare(card: Card): boolean;
+  abstract display(): DisplayingCard<CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|KaleCard|BrusselsSproutCard|JokerCard>
 }
 
 abstract class BrassicaCard extends ActiveCard {
@@ -75,6 +86,9 @@ export class CabbageCard extends BrassicaCard {
     return new CabbageCard(!this.isSelected);
   }
 
+  display(): DisplayingCard<CabbageCard> {
+    return new DisplayingCard(this.flippedURL, CabbageCard)
+  }
 }
 
 export class BroccoliCard extends BrassicaCard {
@@ -85,6 +99,10 @@ export class BroccoliCard extends BrassicaCard {
   select(): BroccoliCard {
     return new BroccoliCard(!this.isSelected);
   }
+
+  display(): DisplayingCard<BroccoliCard> {
+    return new DisplayingCard(this.flippedURL, BroccoliCard)
+  }
 }
 
 export class CauliflowerCard extends BrassicaCard {
@@ -93,7 +111,11 @@ export class CauliflowerCard extends BrassicaCard {
   }
 
   select(): CauliflowerCard {
-    return new CauliflowerCard(!this.isSelected)
+    return new CauliflowerCard(!this.isSelected);
+  }
+
+  display(): DisplayingCard<CauliflowerCard> {
+    return new DisplayingCard(this.flippedURL, CauliflowerCard);
   }
 }
 
@@ -105,6 +127,10 @@ export class KaleCard extends BrassicaCard {
   select(): KaleCard {
     return new KaleCard(!this.isSelected);
   }
+
+  display(): DisplayingCard<KaleCard> {
+    return new DisplayingCard(this.flippedURL, KaleCard);
+  }
 }
 
 export class BrusselsSproutCard extends BrassicaCard {
@@ -114,6 +140,10 @@ export class BrusselsSproutCard extends BrassicaCard {
 
   select(): BrusselsSproutCard {
     return new BrusselsSproutCard(!this.isSelected);
+  }
+
+  display(): DisplayingCard<BrusselsSproutCard> {
+    return new DisplayingCard(this.flippedURL, BrusselsSproutCard);
   }
 }
 
@@ -125,21 +155,29 @@ export class RomanescoCard extends BrassicaCard {
   select(): RomanescoCard {
     return new RomanescoCard(!this.isSelected);
   }
+
+  display(): DisplayingCard<RomanescoCard> {
+    return new DisplayingCard(this.flippedURL, RomanescoCard);
+  }
 }
 
 
 export class JokerCard extends ActiveCard {
+  readonly behaviors: Array<() => {}> = [];
+
   constructor(
-    readonly behaviors: Array<() => {}>,
     readonly isSelected: boolean = false,
   ) {
     super('/');
   }
 
   select(): JokerCard {
-    return new JokerCard(this.behaviors, !this.isSelected);
+    return new JokerCard(!this.isSelected);
   }
   compare(): boolean {
     return false;
+  }
+  display(): DisplayingCard<JokerCard> {
+    return new DisplayingCard(this.flippedURL, JokerCard)
   }
 }
