@@ -3,12 +3,14 @@ import score from './reducers/score';
 import board from './reducers/board';
 import card from './reducers/cards';
 import joker from './reducers/joker';
+import selected from './reducers/selected-count';
 import { State } from './state';
 import { CabbageCard, BroccoliCard, CauliflowerCard, KaleCard, BrusselsSproutCard, RomanescoCard } from './card';
 
 export default combineReducers<State>({ 
   score,
-  board, 
+  board,
+  selected,
   a1: card(CabbageCard, 'a1'),
   a2: card(CabbageCard, 'a2'),
   a3: card(CabbageCard, 'a3'),

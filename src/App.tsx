@@ -8,7 +8,7 @@ import { ICard } from './internal/card';
 
 import Board from './Board';
 
-import { getSelectAction } from './internal/actions';
+import { getSelectAction, getUnselectAction } from './internal/actions';
 
 const logo = require('./logo.svg');
 
@@ -21,7 +21,7 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select}/>
+          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} count={this.props.selected}/>
         </div>
         
       </div>
@@ -34,10 +34,12 @@ interface StateProps {
   cards: {
     [id: string]: ICard
   }
+  selected: number;
 }
 
 interface DispatchProps {
-  select: (id: string) => void;
+  select: (id: string, count: number) => void;
+  unselect: (id: string) => void;
 }
 
 function mapStatetoProps(state: State): StateProps {
@@ -69,12 +71,13 @@ function mapStatetoProps(state: State): StateProps {
     g1: state.g1
   };
     
-  return { board: state.board, cards };
+  return { board: state.board, cards, selected: state.selected };
 }
 
 function mapDispatchtoProps(dispatch:any): DispatchProps {
   return {
-    select: (id: string): void => dispatch(getSelectAction(id))
+    select: (id: string): void => dispatch(getSelectAction(id)),
+    unselect: (id: string): void => dispatch(getUnselectAction(id))
   }
 }
 

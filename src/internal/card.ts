@@ -7,6 +7,8 @@ export interface ICard {
 
 export interface IActiveCard extends ICard {
   isSelected: boolean;
+  compare(card: Card): boolean;
+  select(): Card;
 }
 
 export interface IInactiveCard extends ICard {
@@ -47,6 +49,7 @@ abstract class ActiveCard extends Card implements IActiveCard {
   }
 
   abstract select(): any;
+  abstract compare(card: Card): boolean;
 }
 
 abstract class BrassicaCard extends ActiveCard {
@@ -56,7 +59,6 @@ abstract class BrassicaCard extends ActiveCard {
   ) {
     super(path);
   }
-
 
   compare(card: Card): boolean {
     if (card instanceof BrassicaCard) return this.brassica === card.brassica;
@@ -136,5 +138,8 @@ export class JokerCard extends ActiveCard {
 
   select(): JokerCard {
     return new JokerCard(this.behaviors, !this.isSelected);
+  }
+  compare(): boolean {
+    return false;
   }
 }

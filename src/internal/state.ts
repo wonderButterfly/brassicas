@@ -13,6 +13,7 @@ import { Board } from './board';
 export interface State {
   score: number;
   board: Board;
+  selected: number;
   a1: CabbageCard;
   a2: CabbageCard;
   a3: CabbageCard;

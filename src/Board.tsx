@@ -10,18 +10,28 @@ interface Props {
   cards: {
     [id: string]: ICard;
   };
-  select: (code: string) => void;
+  count: number;
+  select: (code: string, count: number) => void;
+  unselect: (code: string) => void;
 }
 
-export default function Board({ order, cards, select }: Props) {
+export default function Board({ order, cards, select, unselect, count }: Props) {
   return <div className="Board">
     {order.map((id: string) => {
       const card: ICard = cards[id];
       let key = id;
+      let dispatch: () => void;
+
       if (card.isActive) {
-        key = ((card as IActiveCard).isSelected ? '+' : '-') + key;
+        const {isSelected} = card as IActiveCard
+        key = (isSelected ? '+' : '-') + key;
+        dispatch = isSelected ? () => {unselect(id)} : () => {select(id, count)}
       }
-      return <Card key={key} card={card} selectDispatch={() => {select(id)}}/>
+      else {
+        dispatch = () => {}
+      }
+      
+      return <Card key={key} card={card} selectDispatch={dispatch}/>
     })}
   </div>
 }
