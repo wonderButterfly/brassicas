@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { SELECT, UNSELECT } from './constants';
+import { PRESELECT, UNSELECT } from './constants';
 
 export interface selectAction extends Action {
   code: string;
@@ -18,7 +18,7 @@ export interface scoreAction extends Action {
 }
 
 export function getSelectAction(code: string): selectAction {
-  return { type: SELECT, code }
+  return { type: PRESELECT, code }
 }
 
 export function getUnselectAction(code: string): unselectAction {

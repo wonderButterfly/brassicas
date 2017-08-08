@@ -1,5 +1,6 @@
 export interface IBoard {
   order: string[];
+  isClickDisabled: boolean;
 }
 
 export class Board {
@@ -24,6 +25,15 @@ export class Board {
   }
 
   constructor(
-    readonly order: string[] = Board.shuffle()
+    readonly order: string[] = Board.shuffle(),
+    readonly isClickDisabled = false
   ) { }
+
+  disableClick(): Board {
+    return new Board(this.order, true)
+  }
+
+  enableClick(): Board {
+    return new Board(this.order)
+  }
 }

@@ -10,12 +10,13 @@ interface Props {
   cards: {
     [id: string]: ICard;
   };
-  count: number;
-  select: (code: string, count: number) => void;
+  click: boolean;
+  selected: string;
+  select: (code: string) => void;
   unselect: (code: string) => void;
 }
 
-export default function Board({ order, cards, select, unselect, count }: Props) {
+export default function Board({ order, click, cards, select, unselect, selected }: Props) {
   return <div className="Board">
     {order.map((id: string) => {
       const card: ICard = cards[id];
@@ -25,13 +26,13 @@ export default function Board({ order, cards, select, unselect, count }: Props) 
       if (card.isActive) {
         const {isSelected} = card as IActiveCard
         key = (isSelected ? '+' : '-') + key;
-        dispatch = isSelected ? () => {unselect(id)} : () => {select(id, count)}
+        dispatch = isSelected ? () => {unselect(id)} : () => {select(id)}
       }
       else {
         dispatch = () => {}
       }
       
-      return <Card key={key} card={card} selectDispatch={dispatch}/>
+      return <Card key={key} card={card} selectDispatch={click ? () => {} : dispatch}/>
     })}
   </div>
 }

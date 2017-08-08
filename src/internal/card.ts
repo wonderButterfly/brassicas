@@ -7,7 +7,6 @@ export interface ICard {
 
 export interface IActiveCard extends ICard {
   isSelected: boolean;
-  compare(card: Card): boolean;
   select(): Card;
 }
 
@@ -41,39 +40,47 @@ export class InactiveCard extends Card implements IInactiveCard {
   }
 }
 
-class DisplayingCard<T> extends Card {
+export class DisplayingCard<T extends ActiveCard> extends Card {
+  private instance: T;
+
   constructor(path: string, private c:{ new(): T}) {
     super(path, false)
+    this.instance = new this.c();
   }
 
   revert(): T {
-    return new this.c()
+    return this.instance;
+  }
+
+  inactivate(): InactiveCard {
+    const { URL, brassica } = this.instance;
+    return new InactiveCard(URL, brassica || '');
+  }
+
+  compare(card: DisplayingCard<any>): boolean {
+    if (this.instance === undefined || card.instance === undefined) return false;
+    else return this.instance.brassica === card.instance.brassica;
   }
 }
 
+type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|KaleCard|BrusselsSproutCard|JokerCard
+
 abstract class ActiveCard extends Card implements IActiveCard {
+ 
   readonly isSelected: boolean;
+  readonly brassica: string | null;
 
   constructor(protected flippedURL: string) {
     super('/', true);
   }
 
   abstract select(): any;
-  abstract compare(card: Card): boolean;
-  abstract display(): DisplayingCard<CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|KaleCard|BrusselsSproutCard|JokerCard>
+  abstract display(): DisplayingCard<ActiveSubCards>;
 }
 
 abstract class BrassicaCard extends ActiveCard {
-  constructor(
-    readonly brassica: string, 
-    path: string
-  ) {
+  constructor(readonly brassica: string, path: string) {
     super(path);
-  }
-
-  compare(card: Card): boolean {
-    if (card instanceof BrassicaCard) return this.brassica === card.brassica;
-    else return false;
   }
 }
 
@@ -87,7 +94,7 @@ export class CabbageCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<CabbageCard> {
-    return new DisplayingCard(this.flippedURL, CabbageCard)
+    return new DisplayingCard(this.flippedURL, CabbageCard);
   }
 }
 
@@ -101,7 +108,7 @@ export class BroccoliCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<BroccoliCard> {
-    return new DisplayingCard(this.flippedURL, BroccoliCard)
+    return new DisplayingCard(this.flippedURL, BroccoliCard);
   }
 }
 
@@ -164,18 +171,14 @@ export class RomanescoCard extends BrassicaCard {
 
 export class JokerCard extends ActiveCard {
   readonly behaviors: Array<() => {}> = [];
+  readonly brassica = null;
 
-  constructor(
-    readonly isSelected: boolean = false,
-  ) {
+  constructor(readonly isSelected: boolean = false) {
     super('/');
   }
 
   select(): JokerCard {
     return new JokerCard(!this.isSelected);
-  }
-  compare(): boolean {
-    return false;
   }
   display(): DisplayingCard<JokerCard> {
     return new DisplayingCard(this.flippedURL, JokerCard)

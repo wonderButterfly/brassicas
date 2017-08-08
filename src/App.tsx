@@ -21,7 +21,7 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} count={this.props.selected}/>
+          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} selected={this.props.selected} click={this.props.board.isClickDisabled}/>
         </div>
         
       </div>
@@ -34,11 +34,11 @@ interface StateProps {
   cards: {
     [id: string]: ICard
   }
-  selected: number;
+  selected: string;
 }
 
 interface DispatchProps {
-  select: (id: string, count: number) => void;
+  select: (id: string) => void;
   unselect: (id: string) => void;
 }
 
