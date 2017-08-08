@@ -2,35 +2,36 @@ import { combineReducers } from 'redux'
 import score from './reducers/score';
 import board from './reducers/board';
 import card from './reducers/cards';
-import joker from './reducers/joker'
+import joker from './reducers/joker';
 import { State } from './state';
+import { CabbageCard, BroccoliCard, CauliflowerCard, KaleCard, BrusselsSproutCard, RomanescoCard } from './card';
 
 export default combineReducers<State>({ 
   score,
   board, 
-  a1: card('cabbage', 'a1'),
-  a2: card('cabbage', 'a2'),
-  a3: card('cabbage', 'a3'),
-  a4: card('cabbage', 'a4'),
-  b1: card('broccoli', 'b1'),
-  b2: card('broccoli', 'b2'),
-  b3: card('broccoli', 'b3'),
-  b4: card('broccoli', 'b4'),
-  c1: card('cauliflower', 'c1'),
-  c2: card('cauliflower', 'c2'),
-  c3: card('cauliflower', 'c3'),
-  c4: card('cauliflower', 'c4'),
-  d1: card('kale', 'd1'),
-  d2: card('kale', 'd2'),
-  d3: card('kale', 'd3'),
-  d4: card('kale', 'd4'),
-  e1: card('brussels sprout', 'e1'),
-  e2: card('brussels sprout', 'e2'),
-  e3: card('brussels sprout', 'e3'),
-  e4: card('brussels sprout', 'e4'),
-  f1: card('romanesco', 'f1'),
-  f2: card('romanesco', 'f2'),
-  f3: card('romanesco', 'f3'),
-  f4: card('romanesco', 'f4'),
+  a1: card(CabbageCard, 'a1'),
+  a2: card(CabbageCard, 'a2'),
+  a3: card(CabbageCard, 'a3'),
+  a4: card(CabbageCard, 'a4'),
+  b1: card(BroccoliCard, 'b1'),
+  b2: card(BroccoliCard, 'b2'),
+  b3: card(BroccoliCard, 'b3'),
+  b4: card(BroccoliCard, 'b4'),
+  c1: card(CauliflowerCard, 'c1'),
+  c2: card(CauliflowerCard, 'c2'),
+  c3: card(CauliflowerCard, 'c3'),
+  c4: card(CauliflowerCard, 'c4'),
+  d1: card(KaleCard, 'd1'),
+  d2: card(KaleCard, 'd2'),
+  d3: card(KaleCard, 'd3'),
+  d4: card(KaleCard, 'd4'),
+  e1: card(BrusselsSproutCard, 'e1'),
+  e2: card(BrusselsSproutCard, 'e2'),
+  e3: card(BrusselsSproutCard, 'e3'),
+  e4: card(BrusselsSproutCard, 'e4'),
+  f1: card(RomanescoCard, 'f1'),
+  f2: card(RomanescoCard, 'f2'),
+  f3: card(RomanescoCard, 'f3'),
+  f4: card(RomanescoCard, 'f4'),
   g1: joker
 })
