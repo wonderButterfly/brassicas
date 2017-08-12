@@ -15,14 +15,15 @@ export default [
             return next({type: ADD_SELECTED, code});
           }
           else {
+            const selection: string = getState()[selected].brassica
+            const current: string = getState()[code].brassica 
+
             next({type: DISPLAY, code})
             next({type: DISPLAY, code: selected})
 
             setTimeout(() => {
-              const selectedCard = getState()[selected];
-              const thisCard = getState()[code]
 
-              if (selectedCard.compare(thisCard)) {
+              if (selection === current) {
                 next({type: INACTIVATE, code})
                 next({type: INACTIVATE, code: selected})
 

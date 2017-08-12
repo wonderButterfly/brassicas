@@ -56,17 +56,11 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
     const { URL, brassica } = this.instance;
     return new InactiveCard(URL, brassica || '');
   }
-
-  compare(card: DisplayingCard<any>): boolean {
-    if (this.instance === undefined || card.instance === undefined) return false;
-    else return this.instance.brassica === card.instance.brassica;
-  }
 }
 
 type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|KaleCard|BrusselsSproutCard|JokerCard
 
 abstract class ActiveCard extends Card implements IActiveCard {
- 
   readonly isSelected: boolean;
   readonly brassica: string | null;
 
@@ -170,7 +164,7 @@ export class RomanescoCard extends BrassicaCard {
 
 
 export class JokerCard extends ActiveCard {
-  readonly behaviors: Array<() => {}> = [];
+  readonly behaviors: Array<() => void> = [];
   readonly brassica = null;
 
   constructor(readonly isSelected: boolean = false) {
