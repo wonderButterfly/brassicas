@@ -1,4 +1,4 @@
-import { BroccoliCard, CabbageCard } from './card';
+import { BroccoliCard } from './card';
 
 
 it('creates a card', () => {
@@ -8,13 +8,4 @@ it('creates a card', () => {
   expect(myCard.brassica).toBe('broccoli')
   expect(myCard).toHaveProperty('isActive')
   expect(myCard.isActive).toBe(true)
-})
-
-it('allows for comparisons', () => {
-  const a = new BroccoliCard();
-  const b = new BroccoliCard();
-  const c = new CabbageCard();
-
-  expect(a.compare(b)).toBe(true);
-  expect(a.compare(c)).toBe(false);
 })

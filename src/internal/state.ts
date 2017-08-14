@@ -3,7 +3,7 @@ import {
   BrusselsSproutCard, 
   CabbageCard, 
   CauliflowerCard, 
-  KaleCard, 
+  RedCabbageCard, 
   RomanescoCard, 
   JokerCard 
 } from './card';
@@ -26,10 +26,10 @@ export interface State {
   c2: CauliflowerCard;
   c3: CauliflowerCard;
   c4: CauliflowerCard;
-  d1: KaleCard;
-  d2: KaleCard;
-  d3: KaleCard;
-  d4: KaleCard;
+  d1: RedCabbageCard;
+  d2: RedCabbageCard;
+  d3: RedCabbageCard;
+  d4: RedCabbageCard;
   e1: BrusselsSproutCard;
   e2: BrusselsSproutCard;
   e3: BrusselsSproutCard;

@@ -22,11 +22,9 @@ export default [
             next({type: DISPLAY, code: selected})
 
             setTimeout(() => {
-
               if (selection === current) {
                 next({type: INACTIVATE, code})
                 next({type: INACTIVATE, code: selected})
-
               } 
               else {
                 setTimeout(() => {

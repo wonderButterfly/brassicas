@@ -58,7 +58,7 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 }
 
-type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|KaleCard|BrusselsSproutCard|JokerCard
+type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|RedCabbageCard|BrusselsSproutCard|JokerCard
 
 abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
@@ -120,17 +120,17 @@ export class CauliflowerCard extends BrassicaCard {
   }
 }
 
-export class KaleCard extends BrassicaCard {
+export class RedCabbageCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
     super('kale', '/');
   }
 
-  select(): KaleCard {
-    return new KaleCard(!this.isSelected);
+  select(): RedCabbageCard {
+    return new RedCabbageCard(!this.isSelected);
   }
 
-  display(): DisplayingCard<KaleCard> {
-    return new DisplayingCard(this.flippedURL, KaleCard);
+  display(): DisplayingCard<RedCabbageCard> {
+    return new DisplayingCard(this.flippedURL, RedCabbageCard);
   }
 }
 

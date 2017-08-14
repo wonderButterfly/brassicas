@@ -3,7 +3,7 @@ import {
   CabbageCard,
   CauliflowerCard,
   RomanescoCard,
-  KaleCard,
+  RedCabbageCard,
   BrusselsSproutCard,
   InactiveCard,
   DisplayingCard
@@ -12,7 +12,7 @@ import { SELECT, INACTIVATE, DISPLAY, REVERT } from '../constants';
 import { Action } from 'redux';
 import { selectAction } from '../actions';
 
-type Cards = BroccoliCard | CabbageCard | KaleCard | CauliflowerCard | RomanescoCard | BrusselsSproutCard;
+type Cards = BroccoliCard | CabbageCard | RedCabbageCard | CauliflowerCard | RomanescoCard | BrusselsSproutCard;
 
 function initialize<T extends Cards>(card: T, code: string): T {
   return card.setId(code) as T
