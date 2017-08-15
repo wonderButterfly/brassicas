@@ -1,4 +1,5 @@
 .Board {
   width: 550px;
-  margin: 0 auto;
+  height: 550px;
+  padding: 10px;
 }

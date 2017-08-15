@@ -1,14 +1,24 @@
-.card{
-  border: 1px solid blue;
+.card {
+  border: 1px solid;
+  border-radius: 20px;
   display: inline-block;
-  max-width: 100px;
+  width: 100px;
+  height: 100px;
+  margin: 0 3px;
 }
 
-.card-img-facedown{
-  width: 100%;
-  height: auto
+.card-unselected {
+  border-color: rgba(22, 22, 22, .2);
 }
 
-.card-selected{
-  border: 1px solid red;
+.card-selected {
+  border-color: rgba(22, 22, 22, .9);
+}
+
+.card-guess-true {
+  border-color: rgba(20, 155, 70, .5);
+}
+
+.card-guess-false {
+  border-color: red;
 }
