@@ -1,6 +1,7 @@
 export interface ICard {
   URL: string;
   isActive: boolean;
+  isJoker: boolean;
   setId: (id: string) => Card;
   getId: () => string;
 }
@@ -33,6 +34,10 @@ abstract class Card implements ICard {
   public getId(): string {
     return this.id;
   }
+
+  get isJoker(): boolean {
+    return this instanceof JokerCard;
+  }
 }
 
 export class InactiveCard extends Card implements IInactiveCard {
@@ -55,6 +60,7 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 
   revert(): T {
+    console.log(this.c)
     return this.instance;
   }
 
@@ -65,6 +71,10 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
 
   incorrect(): DisplayingCard<T> {
     return new DisplayingCard<T>(this.instance.URL, this.c, false)
+  }
+
+  get isJoker(): boolean {
+    return this.instance instanceof JokerCard;
   }
 }
 
@@ -175,7 +185,6 @@ export class RomanescoCard extends BrassicaCard {
 
 export class JokerCard extends ActiveCard {
   readonly behaviors: Array<() => void> = [];
-  readonly brassica = null;
 
   constructor(readonly isSelected: boolean = false) {
     super('/');

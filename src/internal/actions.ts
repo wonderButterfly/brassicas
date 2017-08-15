@@ -17,6 +17,11 @@ export interface scoreAction extends Action {
   amount: number;
 }
 
+export interface shuffleAction extends Action {
+  blanks: Array<string|null>
+  remaining: string[];
+}
+
 export function getSelectAction(code: string): selectAction {
   return { type: PRESELECT, code }
 }

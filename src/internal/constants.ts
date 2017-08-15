@@ -8,3 +8,4 @@ export const ADD_SCORE = 'add-score';
 export const DISPLAY = 'display';
 export const REVERT = 'revert';
 export const INCORRECT = 'incorrect';
+export const SHUFFLE = 'shuffle';

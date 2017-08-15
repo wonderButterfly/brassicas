@@ -1,6 +1,6 @@
 import {Store, Dispatch, Action} from 'redux';
 import {State} from './state';
-import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT, INCORRECT} from './constants';
+import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT, INCORRECT, SHUFFLE} from './constants';
 import {selectAction, unselectAction} from './actions';
 
 export default [
@@ -15,6 +15,7 @@ export default [
             return next({type: ADD_SELECTED, code});
           }
           else {
+
             const selection: string = getState()[selected].brassica
             const current: string = getState()[code].brassica 
 
@@ -34,6 +35,10 @@ export default [
                   next({type: REVERT, code: selected})
 
                   next({type: ADD_SCORE, amount: 2})
+                  
+                  if (getState()[selected].isJoker || getState()[code].isJoker) {
+                    next({type: 'activate joker'})
+                  }
                 }, 1000);
               }
               return next({type: SUB_SELECTED});
@@ -47,6 +52,28 @@ export default [
         }
 
         return next(action);
+      }
+    }
+  },
+  function middleware2({dispatch, getState}: Store<State>) {
+    return function(next: Dispatch<Action>): (action: Action) => void {
+      return function(action: Action) {
+        if (action.type === 'activate joker') {
+          const remaining: string[] = [];
+          const blanks = getState().board.order.map((str: string) => {
+            if (getState()[str].isActive) {
+              remaining.push(str);
+              return null;
+            } 
+            else {
+              return str;
+            }
+          })
+
+          return next({type: SHUFFLE, blanks, remaining})
+        }
+
+        return next(action)
       }
     }
   }

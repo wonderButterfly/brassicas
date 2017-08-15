@@ -2,4 +2,6 @@
   width: 550px;
   height: 550px;
   padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
 }

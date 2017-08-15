@@ -11,9 +11,10 @@ interface Props {
 export default function Card({ card, selectDispatch }: Props) {
   if (card.isActive) {
     const { isSelected } = card as IActiveCard;
-    return FaceDownCard(isSelected, selectDispatch)
+    return FaceDownCard(isSelected, selectDispatch);
   } else {
-    const {URL, isCorrect} = card as IInactiveCard
+    const {URL, isCorrect, isJoker} = card as IInactiveCard;
+    if (isJoker) return JokerDisplay()
     return InactiveCard(URL, isCorrect)
   }
 }
@@ -29,5 +30,15 @@ function InactiveCard(url: string, isCorrect: boolean) {
     backgroundSize: '100% 100%'
   }
   return <div className={`card card-guess-${isCorrect}`} style={style} />
+}
+
+const jokerSVG = require('./joker.svg');
+
+function JokerDisplay() {
+  return <div className="card">
+    <div className="card-flex">
+      <img src={jokerSVG} className="card-joker" alt="joker" />
+    </div>
+  </div>
 }
 

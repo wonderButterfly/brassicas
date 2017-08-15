@@ -22,3 +22,22 @@
 .card-guess-false {
   border-color: red;
 }
+
+.card-flex {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-joker {
+  width: 60px;
+  height: auto;
+  animation: Joker-spin 2.5s infinite;
+}
+
+@keyframes Joker-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

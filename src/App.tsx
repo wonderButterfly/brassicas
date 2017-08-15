@@ -21,6 +21,7 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
           <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} selected={this.props.selected} click={this.props.board.isClickDisabled}/>
         </div>
         <small className="App-notice">Images By Coyau / Wikimedia Commons, CC BY-SA 3.0</small>
+        <small className="App-notice">Created by <a href="http://brianl.ee">Brian Lee</a>, 2017</small>
       </div>
     );
   }
