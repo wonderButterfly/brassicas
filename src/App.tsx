@@ -10,20 +10,17 @@ import Board from './Board';
 
 import { getSelectAction, getUnselectAction } from './internal/actions';
 
-const logo = require('./logo.svg');
-
 class App extends React.Component<StateProps & DispatchProps, {}> {
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h1 className="App-title">Match the brassicas</h1>
         </div>
         <div>
           <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} selected={this.props.selected} click={this.props.board.isClickDisabled}/>
         </div>
-        
+        <small className="App-notice">Images By Coyau / Wikimedia Commons, CC BY-SA 3.0</small>
       </div>
     );
   }

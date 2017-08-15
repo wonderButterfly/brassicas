@@ -8,7 +8,7 @@ import {
   InactiveCard,
   DisplayingCard
 } from '../card';
-import { SELECT, INACTIVATE, DISPLAY, REVERT } from '../constants';
+import { SELECT, INACTIVATE, DISPLAY, REVERT, INCORRECT } from '../constants';
 import { Action } from 'redux';
 import { selectAction } from '../actions';
 
@@ -39,6 +39,11 @@ export default function factory<T extends Cards>(c: {new(): T}, code: string): (
       case REVERT:
         if ((action as selectAction).code === code) {
           return (card as DisplayingCard<T>).revert();
+        }
+        break;
+      case INCORRECT:
+        if ((action as selectAction).code === code) {
+          return (card as DisplayingCard<T>).incorrect();
         }
         break;
     }

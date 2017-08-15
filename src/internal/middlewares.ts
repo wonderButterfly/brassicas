@@ -1,6 +1,6 @@
 import {Store, Dispatch, Action} from 'redux';
 import {State} from './state';
-import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT} from './constants';
+import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT, INCORRECT} from './constants';
 import {selectAction, unselectAction} from './actions';
 
 export default [
@@ -27,6 +27,8 @@ export default [
                 next({type: INACTIVATE, code: selected})
               } 
               else {
+                next({type: INCORRECT, code})
+                next({type: INCORRECT, code: selected});
                 setTimeout(() => {
                   next({type: REVERT, code})
                   next({type: REVERT, code: selected})

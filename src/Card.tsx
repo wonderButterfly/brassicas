@@ -13,23 +13,21 @@ export default function Card({ card, selectDispatch }: Props) {
     const { isSelected } = card as IActiveCard;
     return FaceDownCard(isSelected, selectDispatch)
   } else {
-    const {URL, name} = card as IInactiveCard
-    return InactiveCard(URL, name)
+    const {URL, isCorrect} = card as IInactiveCard
+    return InactiveCard(URL, isCorrect)
   }
 }
 
 function FaceDownCard(isSelected: boolean, select: () => any) {
-  const flippedURL = '/assets/img/cards/flipped.jpg';
   const selected = isSelected ? 'selected' : 'unselected'
-  return <div className={`card card-${selected}`} onClick={select}>
-    <img className="card-img-facedown" src={flippedURL} />
-  </div>
+  return <div className={`card card-facedown card-${selected}`} onClick={select} />
 }
 
-function InactiveCard(url: string, name: string) {
-  return <div className="card">
-    <img src={url} />
-    <h5>{name}</h5>
-  </div>
+function InactiveCard(url: string, isCorrect: boolean) {
+  const style = {
+    backgroundImage: `url(${url})`,
+    backgroundSize: '100% 100%'
+  }
+  return <div className={`card card-guess-${isCorrect}`} style={style} />
 }
 

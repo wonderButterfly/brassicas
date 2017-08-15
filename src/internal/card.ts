@@ -12,6 +12,7 @@ export interface IActiveCard extends ICard {
 
 export interface IInactiveCard extends ICard {
   name: string;
+  isCorrect: boolean;
 }
 
 abstract class Card implements ICard {
@@ -35,7 +36,8 @@ abstract class Card implements ICard {
 }
 
 export class InactiveCard extends Card implements IInactiveCard {
-  constructor(path: string, public name: string) {
+  readonly isCorrect: boolean = true;
+  constructor(path: string, readonly name: string) {
     super(path, false);
   }
 }
@@ -43,7 +45,11 @@ export class InactiveCard extends Card implements IInactiveCard {
 export class DisplayingCard<T extends ActiveCard> extends Card {
   private instance: T;
 
-  constructor(path: string, private c:{ new(): T}) {
+  constructor(
+    path: string, 
+    private c:{ new(): T}, 
+    readonly isCorrect?: boolean
+  ) {
     super(path, false)
     this.instance = new this.c();
   }
@@ -56,6 +62,10 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
     const { URL, brassica } = this.instance;
     return new InactiveCard(URL, brassica || '');
   }
+
+  incorrect(): DisplayingCard<T> {
+    return new DisplayingCard<T>(this.instance.URL, this.c, false)
+  }
 }
 
 type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|RedCabbageCard|BrusselsSproutCard|JokerCard
@@ -64,8 +74,8 @@ abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
   readonly brassica: string | null;
 
-  constructor(protected flippedURL: string) {
-    super('/', true);
+  constructor(path: string) {
+    super(path, true);
   }
 
   abstract select(): any;
@@ -74,13 +84,13 @@ abstract class ActiveCard extends Card implements IActiveCard {
 
 abstract class BrassicaCard extends ActiveCard {
   constructor(readonly brassica: string, path: string) {
-    super(path);
+    super('/assets/img/brassicas/' + path);
   }
 }
 
 export class CabbageCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('cabbage', '/');
+    super('cabbage', 'cabbage.jpg');
   }
 
   select(): CabbageCard {
@@ -88,13 +98,13 @@ export class CabbageCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<CabbageCard> {
-    return new DisplayingCard(this.flippedURL, CabbageCard);
+    return new DisplayingCard(this.URL, CabbageCard);
   }
 }
 
 export class BroccoliCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('broccoli', '/');
+    super('broccoli', 'broccoli.jpg');
   }
 
   select(): BroccoliCard {
@@ -102,13 +112,13 @@ export class BroccoliCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<BroccoliCard> {
-    return new DisplayingCard(this.flippedURL, BroccoliCard);
+    return new DisplayingCard(this.URL, BroccoliCard);
   }
 }
 
 export class CauliflowerCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('cauliflower', '/')
+    super('cauliflower', 'cauliflower.jpg')
   }
 
   select(): CauliflowerCard {
@@ -116,13 +126,13 @@ export class CauliflowerCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<CauliflowerCard> {
-    return new DisplayingCard(this.flippedURL, CauliflowerCard);
+    return new DisplayingCard(this.URL, CauliflowerCard);
   }
 }
 
 export class RedCabbageCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('kale', '/');
+    super('red cabbage', 'red-cabbage.jpg');
   }
 
   select(): RedCabbageCard {
@@ -130,13 +140,13 @@ export class RedCabbageCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<RedCabbageCard> {
-    return new DisplayingCard(this.flippedURL, RedCabbageCard);
+    return new DisplayingCard(this.URL, RedCabbageCard);
   }
 }
 
 export class BrusselsSproutCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('brussels sprout', '/');
+    super('brussels sprouts', 'brusselssprouts.jpg');
   }
 
   select(): BrusselsSproutCard {
@@ -144,13 +154,13 @@ export class BrusselsSproutCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<BrusselsSproutCard> {
-    return new DisplayingCard(this.flippedURL, BrusselsSproutCard);
+    return new DisplayingCard(this.URL, BrusselsSproutCard);
   }
 }
 
 export class RomanescoCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('romanesco', '/');
+    super('romanesco', 'romanesco.jpg');
   }
 
   select(): RomanescoCard {
@@ -158,7 +168,7 @@ export class RomanescoCard extends BrassicaCard {
   }
 
   display(): DisplayingCard<RomanescoCard> {
-    return new DisplayingCard(this.flippedURL, RomanescoCard);
+    return new DisplayingCard(this.URL, RomanescoCard);
   }
 }
 
@@ -175,6 +185,6 @@ export class JokerCard extends ActiveCard {
     return new JokerCard(!this.isSelected);
   }
   display(): DisplayingCard<JokerCard> {
-    return new DisplayingCard(this.flippedURL, JokerCard)
+    return new DisplayingCard(this.URL, JokerCard)
   }
 }
