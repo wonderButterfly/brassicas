@@ -33,6 +33,7 @@ interface StateProps {
     [id: string]: ICard
   }
   selected: string;
+  gameOver: boolean;
 }
 
 interface DispatchProps {
@@ -69,7 +70,7 @@ function mapStatetoProps(state: State): StateProps {
     g1: state.g1
   };
     
-  return { board: state.board, cards, selected: state.selected };
+  return { board: state.board, cards, selected: state.selected, gameOver: state.gameOver };
 }
 
 function mapDispatchtoProps(dispatch:any): DispatchProps {

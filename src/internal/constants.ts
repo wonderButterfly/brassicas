@@ -9,3 +9,4 @@ export const DISPLAY = 'display';
 export const REVERT = 'revert';
 export const INCORRECT = 'incorrect';
 export const SHUFFLE = 'shuffle';
+export const GAME_OVER = 'game over';

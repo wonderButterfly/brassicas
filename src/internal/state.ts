@@ -14,6 +14,8 @@ export interface State {
   score: number;
   board: Board;
   selected: string;
+  remaining: number;
+  gameOver: boolean;
   a1: CabbageCard;
   a2: CabbageCard;
   a3: CabbageCard;
