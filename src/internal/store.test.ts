@@ -12,13 +12,13 @@ it('creates a valid store', () => {
 })
 
 it('creates a store with a valid state', () => {
-  const state: State = store.getState();
+  const state: State = store.getState() as State;
   expect(state).toHaveProperty('score')
   expect(state.a1).toBeInstanceOf(CabbageCard)
 })
 
 it('creates a store with correct inital values', () => {
-  const state: State = store.getState()
+  const state: State = store.getState() as State;
   expect(state.score).toBe(0)
   
 })

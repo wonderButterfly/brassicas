@@ -9,7 +9,7 @@ import gameOver from './reducers/game-over';
 import { State } from './state';
 import { CabbageCard, BroccoliCard, CauliflowerCard, RedCabbageCard, BrusselsSproutCard, RomanescoCard } from './card';
 
-export default combineReducers<State>({ 
+export default combineReducers<State | undefined>({ 
   score,
   board,
   selected,
