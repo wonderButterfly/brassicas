@@ -52,10 +52,10 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
 
   constructor(
     path: string, 
-    private c:{ new(): T}, 
+    private c: { new(): T }, 
     readonly isCorrect?: boolean
   ) {
-    super(path, false)
+    super(path, false);
     this.instance = new this.c();
   }
 
@@ -69,7 +69,7 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 
   incorrect(): DisplayingCard<T> {
-    return new DisplayingCard<T>(this.instance.URL, this.c, false)
+    return new DisplayingCard<T>(this.instance.URL, this.c, false);
   }
 
   get isJoker(): boolean {
@@ -77,7 +77,7 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 }
 
-type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|RedCabbageCard|BrusselsSproutCard|JokerCard
+type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|RedCabbageCard|BrusselsSproutCard|JokerCard;
 
 abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
@@ -127,7 +127,7 @@ export class BroccoliCard extends BrassicaCard {
 
 export class CauliflowerCard extends BrassicaCard {
   constructor(readonly isSelected: boolean = false) {
-    super('cauliflower', 'cauliflower.jpg')
+    super('cauliflower', 'cauliflower.jpg');
   }
 
   select(): CauliflowerCard {
@@ -181,7 +181,6 @@ export class RomanescoCard extends BrassicaCard {
   }
 }
 
-
 export class JokerCard extends ActiveCard {
   readonly behaviors: Array<() => void> = [];
 
@@ -193,6 +192,6 @@ export class JokerCard extends ActiveCard {
     return new JokerCard(!this.isSelected);
   }
   display(): DisplayingCard<JokerCard> {
-    return new DisplayingCard(this.URL, JokerCard)
+    return new DisplayingCard(this.URL, JokerCard);
   }
 }

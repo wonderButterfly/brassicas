@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import score from './reducers/score';
 import board from './reducers/board';
 import card from './reducers/cards';
@@ -40,4 +40,4 @@ export default combineReducers<State | undefined>({
   f3: card(RomanescoCard, 'f3'),
   f4: card(RomanescoCard, 'f4'),
   g1: joker('g1')
-})
+});

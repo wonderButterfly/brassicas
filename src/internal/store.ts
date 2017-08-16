@@ -10,6 +10,6 @@ const appReducers = function(state: State, action: Action) {
   }
 
   return reducers(state, action);
-}
+};
 
-export const store: Store<State | undefined> = createStore(appReducers, applyMiddleware(...middlewares as Middleware[]))
+export const store: Store<State | undefined> = createStore(appReducers, applyMiddleware(...middlewares as Middleware[]));

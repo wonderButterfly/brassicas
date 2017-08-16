@@ -37,7 +37,7 @@ interface StateProps {
   board: IBoard;
   cards: {
     [id: string]: ICard
-  }
+  };
   selected: string;
   gameOver: boolean;
   score: number;
@@ -86,7 +86,7 @@ function mapDispatchtoProps(dispatch: any): DispatchProps {
     select: (id: string): void => dispatch(getSelectAction(id)),
     unselect: (id: string): void => dispatch(getUnselectAction(id)),
     reinitalize: (): void => dispatch(reinitAction())
-  }
+  };
 }
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(App);

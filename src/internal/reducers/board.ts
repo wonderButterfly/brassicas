@@ -1,10 +1,10 @@
 import { Action } from 'redux';
-import { shuffleAction } from '../actions';
+import { ShuffleAction } from '../actions';
 import { Board } from '../board';
 import { INACTIVATE, DISPLAY, REVERT, SHUFFLE } from '../constants';
 
-export default function board(board: Board = new Board(), action: Action): Board{
-  switch(action.type) {
+export default function boardReducer(board: Board = new Board(), action: Action): Board {
+  switch (action.type) {
     case DISPLAY: 
       return board.disableClick();
     case INACTIVATE:
@@ -12,8 +12,9 @@ export default function board(board: Board = new Board(), action: Action): Board
     case REVERT:
       return board.enableClick();
     case SHUFFLE: 
-      const { blanks, remaining } = action as shuffleAction
+      const { blanks, remaining } = action as ShuffleAction;
       return board.shuffled(blanks, remaining);
+    default:
+      return board;
   }
-  return board
 }

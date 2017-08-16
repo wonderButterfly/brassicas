@@ -12,14 +12,14 @@ export class Board {
       'e1', 'e2', 'e3', 'e4',
       'f1', 'f2', 'f3', 'f4',
       'g1'
-    ]
+    ];
 
   static shuffle(cards: string[] = Board.cards): string[] {
     const shuffled = [];
-    let remaining = [...cards]
+    let remaining = [...cards];
     while (shuffled.length < Board.cards.length) {
       let random: number = Math.floor(Math.random() * remaining.length);
-      shuffled.push(remaining.splice(random, 1)[0])
+      shuffled.push(remaining.splice(random, 1)[0]);
     }
     return shuffled;
   }
@@ -30,21 +30,21 @@ export class Board {
   ) { }
 
   disableClick(): Board {
-    return new Board(this.order, true)
+    return new Board(this.order, true);
   }
 
   enableClick(): Board {
-    return new Board(this.order)
+    return new Board(this.order);
   }
 
   public shuffled(input: Array<string|null>, remaining: string[]): Board {
-    const newOrder: string[] = []
+    const newOrder: string[] = [];
     const remainingShuffled = Board.shuffle(remaining);
     for (let i = 0; i < input.length; i++) {
       newOrder[i] = input[i] || shift(remainingShuffled);
     }
 
-    return new Board(newOrder)
+    return new Board(newOrder);
   }
 }
 
