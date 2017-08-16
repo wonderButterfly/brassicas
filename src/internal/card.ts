@@ -60,7 +60,6 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 
   revert(): T {
-    console.log(this.c)
     return this.instance;
   }
 

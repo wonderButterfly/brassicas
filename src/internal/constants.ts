@@ -10,3 +10,4 @@ export const REVERT = 'revert';
 export const INCORRECT = 'incorrect';
 export const SHUFFLE = 'shuffle';
 export const GAME_OVER = 'game over';
+export const REINIT = 'reinitialize';

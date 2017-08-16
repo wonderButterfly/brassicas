@@ -1,6 +1,6 @@
 import {Store, Dispatch, Action} from 'redux';
 import {State} from './state';
-import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT, INCORRECT, SHUFFLE, GAME_OVER} from './constants';
+import {PRESELECT, SELECT, UNSELECT, ADD_SELECTED, SUB_SELECTED, INACTIVATE, ADD_SCORE, DISPLAY, REVERT, INCORRECT, SHUFFLE, GAME_OVER, REINIT} from './constants';
 import {selectAction, unselectAction} from './actions';
 
 export default [
@@ -80,6 +80,7 @@ export default [
   function middleware3({dispatch, getState}: Store<State>) {
     return function(next: Dispatch<Action>): (action: Action) => void {
       return function(action: Action) {
+        if (action.type === REINIT) return next(action);
         if (getState().remaining === 1) return next({ type: GAME_OVER });
         else return next(action);
       }

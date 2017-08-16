@@ -1,10 +1,13 @@
 import { createStore, Store, applyMiddleware, Middleware, Action } from 'redux';
 import { State } from './state';
+import { REINIT } from './constants';
 import reducers from './combined-reducer';
 import middlewares from './middlewares';
 
 const appReducers = function(state: State, action: Action) {
-  if (action.type === 'REINIT') {
+  console.log(action)
+  if (action.type === REINIT) {
+    console.log(state)
     return reducers(undefined, action);
   }
 

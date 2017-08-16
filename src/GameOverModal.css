@@ -1,0 +1,76 @@
+.Modal-background {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(240,240,240,.55);
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.Modal {
+  color: #000;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal-heading {
+  font: 3em 'Indie Flower', cursive;
+}
+
+.Modal-subheading {
+  font: 2em 'Indie Flower', cursive;
+}
+
+.Modal-content {
+  display: flex;
+}
+
+.Modal-btn {
+  display:inline-block;
+  font-family: 'Indie Flower', cursive;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding:.5rem 1rem;
+  font-size:1rem;
+  border-radius:.25rem;
+  -webkit-transition:all .2s ease-in-out;
+  -o-transition:all .2s ease-in-out;
+  transition:all .2s ease-in-out;
+}
+
+.Modal-btn:hover, .Modal-btn:focus {
+  background: rgb(22, 156, 22);
+  color: rgb(222, 222, 222);
+}
+
+.caption {
+  font: 300 1em 'Roboto';
+  color: rgba(22, 22, 22, .5);
+}
+
+.p40 {
+  width: 40%;
+}
+
+.p60 {
+  width: 60%;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+}

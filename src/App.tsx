@@ -7,8 +7,9 @@ import { IBoard } from './internal/board';
 import { ICard } from './internal/card';
 
 import Board from './Board';
+import GameOverModal from './GameOverModal';
 
-import { getSelectAction, getUnselectAction } from './internal/actions';
+import { getSelectAction, getUnselectAction, reinitAction } from './internal/actions';
 
 class App extends React.Component<StateProps & DispatchProps, {}> {
   render() {
@@ -20,6 +21,11 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
         <div>
           <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} selected={this.props.selected} click={this.props.board.isClickDisabled}/>
         </div>
+        {
+          this.props.gameOver 
+          ? <GameOverModal finalScore={this.props.score} startOver={this.props.reinitalize}/>
+          : null
+        }
         <small className="App-notice">Images By Coyau / Wikimedia Commons, CC BY-SA 3.0</small>
         <small className="App-notice">Created by <a href="http://brianl.ee">Brian Lee</a>, 2017</small>
       </div>
@@ -34,11 +40,13 @@ interface StateProps {
   }
   selected: string;
   gameOver: boolean;
+  score: number;
 }
 
 interface DispatchProps {
   select: (id: string) => void;
   unselect: (id: string) => void;
+  reinitalize: () => void;
 }
 
 function mapStatetoProps(state: State): StateProps {
@@ -70,13 +78,14 @@ function mapStatetoProps(state: State): StateProps {
     g1: state.g1
   };
     
-  return { board: state.board, cards, selected: state.selected, gameOver: state.gameOver };
+  return { board: state.board, cards, selected: state.selected, score: state.score, gameOver: state.gameOver };
 }
 
-function mapDispatchtoProps(dispatch:any): DispatchProps {
+function mapDispatchtoProps(dispatch: any): DispatchProps {
   return {
     select: (id: string): void => dispatch(getSelectAction(id)),
-    unselect: (id: string): void => dispatch(getUnselectAction(id))
+    unselect: (id: string): void => dispatch(getUnselectAction(id)),
+    reinitalize: (): void => dispatch(reinitAction())
   }
 }
 
