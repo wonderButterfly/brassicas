@@ -14,7 +14,9 @@
     "react-scripts-ts": "2.4.0",
     "redux": "^3.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "typescript": "^2.4.2"
+  },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
