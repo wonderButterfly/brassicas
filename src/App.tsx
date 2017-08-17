@@ -8,6 +8,7 @@ import { ICard } from './internal/card';
 
 import Board from './Board';
 import GameOverModal from './GameOverModal';
+import ShuffleAlert from './ShuffleAlert';
 
 import { getSelectAction, getUnselectAction, reinitAction } from './internal/actions';
 
@@ -26,6 +27,11 @@ class App extends React.Component<StateProps & DispatchProps, {}> {
           ? <GameOverModal finalScore={this.props.score} startOver={this.props.reinitalize}/>
           : null
         }
+        {
+          this.props.isShuffling
+          ? <ShuffleAlert />
+          : null
+        }
         <small className="App-notice">Images By Coyau / Wikimedia Commons, CC BY-SA 3.0</small>
         <small className="App-notice">Created by <a href="http://brianl.ee">Brian Lee</a>, 2017</small>
       </div>
@@ -41,6 +47,7 @@ interface StateProps {
   selected: string;
   gameOver: boolean;
   score: number;
+  isShuffling: boolean;
 }
 
 interface DispatchProps {
@@ -78,7 +85,14 @@ function mapStatetoProps(state: State): StateProps {
     g1: state.g1
   };
     
-  return { board: state.board, cards, selected: state.selected, score: state.score, gameOver: state.gameOver };
+  return { 
+    board: state.board, 
+    cards, 
+    selected: state.selected, 
+    score: state.score, 
+    gameOver: state.gameOver, 
+    isShuffling: state.isShuffling
+  };
 }
 
 function mapDispatchtoProps(dispatch: any): DispatchProps {

@@ -11,3 +11,5 @@ export const INCORRECT = 'incorrect';
 export const SHUFFLE = 'shuffle';
 export const GAME_OVER = 'game over';
 export const REINIT = 'reinitialize';
+export const START_SHUFFLE = 'start shuffle';
+export const DONE_SHUFFLING = 'done shuffling';

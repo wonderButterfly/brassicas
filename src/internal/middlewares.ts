@@ -4,7 +4,8 @@ import {
   PRESELECT, SELECT, UNSELECT, 
   ADD_SELECTED, SUB_SELECTED, 
   INACTIVATE, ADD_SCORE, DISPLAY, 
-  REVERT, INCORRECT, SHUFFLE, GAME_OVER, REINIT
+  REVERT, INCORRECT, SHUFFLE, GAME_OVER, REINIT,
+  START_SHUFFLE, DONE_SHUFFLING
 } from './constants';
 import { SelectAction, UnselectAction } from './actions';
 
@@ -33,15 +34,21 @@ export default [
               } else {
                 next({type: INCORRECT, code});
                 next({type: INCORRECT, code: selected});
+
+                if (getState()[selected].isJoker || getState()[code].isJoker) {
+                  next({type: START_SHUFFLE});
+                }
+
                 setTimeout(() => {
                   next({type: REVERT, code});
                   next({type: REVERT, code: selected});
 
-                  next({type: ADD_SCORE, amount: 2});
-                  
                   if (getState()[selected].isJoker || getState()[code].isJoker) {
                     next({type: 'activate joker'});
                   }
+
+                  next({type: ADD_SCORE, amount: 2});
+                  if(getState().isShuffling) next({type: DONE_SHUFFLING});
                 }, 1000);
               }
               return next({type: SUB_SELECTED});

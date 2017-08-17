@@ -6,6 +6,7 @@ import joker from './reducers/joker';
 import selected from './reducers/selected-count';
 import remaining from './reducers/remaining';
 import gameOver from './reducers/game-over';
+import isShuffling from './reducers/shuffling';
 import { State } from './state';
 import { CabbageCard, BroccoliCard, CauliflowerCard, RedCabbageCard, BrusselsSproutCard, RomanescoCard } from './card';
 
@@ -15,6 +16,7 @@ export default combineReducers<State | undefined>({
   selected,
   remaining,
   gameOver,
+  isShuffling,
   a1: card(CabbageCard, 'a1'),
   a2: card(CabbageCard, 'a2'),
   a3: card(CabbageCard, 'a3'),

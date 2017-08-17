@@ -16,6 +16,7 @@ export interface State {
   selected: string;
   remaining: number;
   gameOver: boolean;
+  isShuffling: boolean;
   a1: CabbageCard;
   a2: CabbageCard;
   a3: CabbageCard;
