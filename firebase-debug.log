@@ -1,0 +1,27 @@
+[debug] [2017-08-16T21:30:54.893Z] ----------------------------------------------------------------------
+[debug] [2017-08-16T21:30:54.895Z] Command:       /usr/local/Cellar/node/8.3.0/bin/node /usr/local/bin/firebase serve --only functions:frequency
+[debug] [2017-08-16T21:30:54.896Z] CLI Version:   3.9.2
+[debug] [2017-08-16T21:30:54.896Z] Platform:      darwin
+[debug] [2017-08-16T21:30:54.896Z] Node Version:  v8.3.0
+[debug] [2017-08-16T21:30:54.896Z] Time:          Wed Aug 16 2017 14:30:54 GMT-0700 (PDT)
+[debug] [2017-08-16T21:30:54.896Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-16T21:30:54.916Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-16T21:30:54.916Z] > authorizing via signed-in user
+[debug] [2017-08-16T21:30:54.922Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/cabbagecabbagecabbage-368c6  
+ Wed Aug 16 2017 14:30:54 GMT-0700 (PDT)
+[debug] [2017-08-16T21:30:55.320Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-16T21:30:55.320Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/cabbagecabbagecabbage-368c6/tokens  
+ Wed Aug 16 2017 14:30:55 GMT-0700 (PDT)
+[debug] [2017-08-16T21:30:55.631Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/brianlee/projects/cabbage'...
+[info] 
+[info] i  functions: Preparing to emulate HTTPS functions. Support for other event types coming soon.
+[debug] [2017-08-16T21:30:56.263Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/cabbagecabbagecabbage-368c6  
+ Wed Aug 16 2017 14:30:56 GMT-0700 (PDT)
+[debug] [2017-08-16T21:30:56.263Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/cabbagecabbagecabbage-368c6/apiKeys  
+ Wed Aug 16 2017 14:30:56 GMT-0700 (PDT)
+[debug] [2017-08-16T21:30:56.654Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-16T21:30:56.890Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: frequency: http://localhost:5000/cabbagecabbagecabbage-368c6/us-central1/frequency

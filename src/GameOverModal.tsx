@@ -1,4 +1,8 @@
 import * as React from 'react';
+import axios from 'axios';
+import * as moment from 'moment';
+
+import config from './config';
 
 import './GameOverModal.css';
 
@@ -8,6 +12,7 @@ interface Props {
 }
 
 export default function GameOverModal(props: Props) {
+  postScore(props.finalScore)
   return (
     <div className="Modal-background">
       <div className="Modal">
@@ -27,4 +32,8 @@ export default function GameOverModal(props: Props) {
       </div>
     </div>
   );
+}
+
+function postScore(score: number): Promise<any> {
+  return axios.put(config.path + `/${moment()}.json`, score);
 }
