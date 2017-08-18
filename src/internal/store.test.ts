@@ -1,4 +1,4 @@
-import { store } from './store';
+import store from './store';
 import { CabbageCard } from './card';
 import { State } from './state';
 

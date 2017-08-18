@@ -26,7 +26,7 @@ export class Board {
 
   constructor(
     readonly order: string[] = Board.shuffle(),
-    readonly isClickDisabled = false
+    readonly isClickDisabled: boolean = false
   ) { }
 
   disableClick(): Board {

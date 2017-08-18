@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function GameOverModal(props: Props) {
-  postScore(props.finalScore)
+  postScore(props.finalScore);
   return (
     <div className="Modal-background">
       <div className="Modal">
@@ -34,6 +34,6 @@ export default function GameOverModal(props: Props) {
   );
 }
 
-function postScore(score: number): Promise<any> {
-  return axios.put(config.path + `/${moment()}.json`, score);
+function postScore(score: number): void {
+  axios.put(config.path + `/${moment()}.json`, score);
 }

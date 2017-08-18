@@ -1,4 +1,4 @@
-import { createStore, Store, applyMiddleware, Middleware, Action } from 'redux';
+import { createStore, applyMiddleware, Middleware, Action } from 'redux';
 import { State } from './state';
 import { REINIT } from './constants';
 import reducers from './combined-reducer';
@@ -12,4 +12,4 @@ const appReducers = function(state: State, action: Action) {
   return reducers(state, action);
 };
 
-export const store: Store<State | undefined> = createStore(appReducers, applyMiddleware(...middlewares as Middleware[]));
+export default createStore(appReducers, applyMiddleware(...middlewares as Middleware[]));

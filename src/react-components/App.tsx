@@ -2,15 +2,15 @@ import * as React from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { State } from './internal/state';
-import { IBoard } from './internal/board';
-import { ICard } from './internal/card';
+import { State } from '../internal/state';
+import { IBoard } from '../internal/board';
+import { ICard } from '../internal/card';
 
 import Board from './Board';
 import GameOverModal from './GameOverModal';
 import ShuffleAlert from './ShuffleAlert';
 
-import { getSelectAction, getUnselectAction, reinitAction } from './internal/actions';
+import { getSelectAction, getUnselectAction, reinitAction } from '../internal/actions';
 
 class App extends React.Component<StateProps & DispatchProps, {}> {
   render() {

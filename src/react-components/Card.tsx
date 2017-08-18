@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Card.css';
 
-import { ICard, IInactiveCard, IActiveCard } from './internal/card';
+import { ICard, IInactiveCard, IActiveCard } from '../internal/card';
 
 interface Props {
   card: ICard;

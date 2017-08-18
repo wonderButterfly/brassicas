@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ICard, IActiveCard } from './internal/card';
+import { ICard, IActiveCard } from '../internal/card';
 import Card from './Card';
 
 import './Board.css';
@@ -29,7 +29,7 @@ export default function Board({ order, click, cards, select, unselect, selected 
           key = (isSelected ? '+' : '-') + key;
           dispatch = isSelected ? () => {unselect(id); } : () => {select(id); };
         } else {
-          dispatch = () => { };
+          dispatch = () => { return };
         }
         
         return <Card key={key} card={card} selectDispatch={click ? () => {} : dispatch}/>;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import App from './react-components/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-import { store } from './internal/store';
+import store from './internal/store';
 
 import * as ReactRedux from 'react-redux';
 const { Provider } = ReactRedux;
