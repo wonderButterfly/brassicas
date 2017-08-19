@@ -4,6 +4,8 @@ import * as moment from 'moment';
 
 import config from './config';
 
+import ChartData from './ChartData';
+
 import './GameOverModal.css';
 
 interface Props {
@@ -23,6 +25,8 @@ export default function GameOverModal(props: Props) {
             <h4 className="Modal-subheading">Final score: {props.finalScore}</h4>
 
             <button type="button" className="Modal-btn" onClick={props.startOver}>Start over</button>
+
+            <ChartData />
           </div>
           <figure className="p60">
             <img src="/assets/img/butt-fumble.gif"/>
