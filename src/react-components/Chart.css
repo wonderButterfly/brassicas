@@ -1,0 +1,43 @@
+.Chart {
+  font-family: 'roboto', sans-serif;
+  padding: 2%;
+}
+
+.Chart-menu {
+  margin-bottom: 4px;
+}
+
+.Chart-link {
+  text-decoration: underline;
+  margin-right: 1em;
+  cursor: pointer;
+}
+
+.Chart-link-selected {
+  color: rgb(22, 44, 222)
+}
+
+.Chart-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.Chart-cell {
+  width: 16%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Chart-cell-highlight {
+  background: rgba(100, 100, 250, .7)
+}
+
+.Chart-row-above {
+  border-bottom: 1px solid rgba(22, 22, 22, .4)
+}
+
+.Chart-row-below {
+
+}

@@ -13,8 +13,8 @@ interface Props {
   startOver: () => void;
 }
 
-export default function GameOverModal(props: Props) {
-  postScore(props.finalScore);
+export default function GameOverModal({ finalScore, startOver }: Props) {
+  if (finalScore >= 24) postScore(finalScore);
   return (
     <div className="Modal-background">
       <div className="Modal">
@@ -22,11 +22,11 @@ export default function GameOverModal(props: Props) {
         
         <div className="Modal-content">
           <div className="p40">
-            <h4 className="Modal-subheading">Final score: {props.finalScore}</h4>
-
-            <button type="button" className="Modal-btn" onClick={props.startOver}>Start over</button>
-
-            <ChartData />
+            <div>
+              <h4 className="Modal-subheading">Final score: {finalScore}</h4>
+              <button type="button" className="Modal-btn" onClick={startOver}>Start over</button>
+            </div>
+            <ChartData score={finalScore} />
           </div>
           <figure className="p60">
             <img src="/assets/img/butt-fumble.gif"/>
