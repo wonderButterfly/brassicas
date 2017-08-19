@@ -27,27 +27,26 @@ export default class ChartData extends React.Component<Props, State> {
     this.selectDate = this.selectDate.bind(this);
   }
 
-  private handleData(promise: Promise<any>) {
-    promise.then(({data}) => {
-      this.setState({loading: true, aggregates: data.aggregates, intervals: data.intervals});
-    }).catch(() => {
-      this.setState({loading: false})
-    });
-  }
-  
   selectDate(date: string) {
-    this.handleData(axios.get(config.frequencyURL(date)))
-    this.setState({ selectedDate: date })
+    this.handleData(axios.get(config.frequencyURL(date)));
+    this.setState({ selectedDate: date });
   }
 
   render() {
     const { loading, aggregates, intervals, selectedDate } = this.state;
-    if (loading === null) return <img src='/assets/img/loading.svg' />;
+    if (loading === null) return <img src="/assets/img/loading.svg" />;
     return loading ? <Chart index={intervals} frequencies={aggregates} selectDate={this.selectDate} selectedDate={selectedDate} score={this.props.score} /> : null;
   }
 
   componentDidMount() {
-    this.handleData(axios.get(config.frequencyURL()))
+    this.handleData(axios.get(config.frequencyURL()));
+  }
+
+  private handleData(promise: Promise<any>) {
+    promise.then(({data}) => {
+      this.setState({loading: true, aggregates: data.aggregates, intervals: data.intervals});
+    }).catch(() => {
+      this.setState({loading: false});
+    });
   }
 }
-

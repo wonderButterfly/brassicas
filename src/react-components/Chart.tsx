@@ -4,9 +4,9 @@ import './Chart.css';
 interface Props {
   index: string[];
   frequencies: number[];
-  selectDate(date: string): void;
   score: number;
   selectedDate: string;
+  selectDate(date: string): void;
 }
 
 interface Label {
@@ -15,7 +15,7 @@ interface Label {
 }
 
 const labels: Label[] = [
-  {label:'all', select:'all'},
+  {label: 'all', select: 'all'},
   {label: 'past year', select: 'year'},
   {label: 'past month', select: 'month'}
 ];
@@ -23,14 +23,14 @@ const labels: Label[] = [
 export default function Chart({ index, frequencies, score, selectDate, selectedDate }: Props) {
   function AnchorTags({label, select}: Label) {
     const className = select === selectedDate ? 'Chart-link Chart-link-selected' : 'Chart-link';
-    return <a key={label} onClick={() => {selectDate(select)}} className={className}>{label}</a>
+    return <a key={label} onClick={() => selectDate(select)} className={className}>{label}</a>;
   }
 
-  function findRange(score: number): number {
+  function findRange(myScore: number): number {
     let i: number;
     for (i = 0; i < index.length - 1; i++) {
-      const [a, b] = index[i].split('-')
-      if (score >= +a && score <= +b) break;
+      const [a, b] = index[i].split('-');
+      if (myScore >= +a && myScore <= +b) break;
     }
     return i;
   } 
@@ -43,15 +43,11 @@ export default function Chart({ index, frequencies, score, selectDate, selectedD
         View data from: {labels.map(AnchorTags)} 
       </h6>
       <div className="Chart-row Chart-row-above">
-        {
-          index.map((range, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={range}>{range}</div>)
-        }
+        {index.map((range, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={range}>{range}</div>)}
       </div>
       <div className="Chart-row Chart-row-below">
-        {
-          frequencies.map((freq, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={i}>{freq}</div>)
-        }
+        {frequencies.map((freq, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={i}>{freq}</div>)}
       </div>
     </div>
-  )
+  );
 }
