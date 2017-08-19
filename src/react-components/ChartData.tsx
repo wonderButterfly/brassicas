@@ -42,7 +42,7 @@ export default class ChartData extends React.Component<Props, State> {
 
   render() {
     const { loading, aggregates, intervals, selectedDate } = this.state;
-    if (loading === null) return null;
+    if (loading === null) return <img src='/assets/img/loading.svg' />;
     return loading ? <Chart index={intervals} frequencies={aggregates} selectDate={this.selectDate} selectedDate={selectedDate} score={this.props.score} /> : null;
   }
 
