@@ -7,6 +7,14 @@
   margin: 0 3px;
 }
 
+@media (max-width: 600px) {
+  .card {
+    width: 17vw !important;
+    height: 17vw !important;
+    margin: 0 .5vw !important;
+  }
+}
+
 .card-unselected {
   border-color: rgba(22, 22, 22, .2);
 }
