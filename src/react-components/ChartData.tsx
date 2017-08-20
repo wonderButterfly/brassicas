@@ -5,6 +5,7 @@ import Chart from './Chart';
 
 interface Props {
   score: number;
+  postScore: (score: number) => void;
 }
 
 interface State {
@@ -17,6 +18,8 @@ interface State {
 export default class ChartData extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.props.postScore(this.props.score);
 
     this.state = {
       loading: null,

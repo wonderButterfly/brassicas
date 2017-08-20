@@ -13,8 +13,11 @@ interface Props {
   startOver: () => void;
 }
 
-export default function GameOverModal({ finalScore, startOver }: Props) {
-  if (finalScore >= 24) postScore(finalScore);
+export default function GameOverModal({ finalScore, startOver }: Props) {  
+  function postScore(score: number) {
+    axios.put(config.path + `/${moment()}.json`, score);
+  }
+
   return (
     <div className="Modal-background">
       <div className="Modal">
@@ -26,7 +29,7 @@ export default function GameOverModal({ finalScore, startOver }: Props) {
               <h4 className="Modal-subheading">Final score: {finalScore}</h4>
               <button type="button" className="Modal-btn" onClick={startOver}>Start over</button>
             </div>
-            <ChartData score={finalScore} />
+            <ChartData score={finalScore} postScore={postScore}/>
           </div>
           <figure className="p60">
             <img src="/assets/img/butt-fumble.gif"/>
@@ -36,8 +39,4 @@ export default function GameOverModal({ finalScore, startOver }: Props) {
       </div>
     </div>
   );
-}
-
-function postScore(score: number): void {
-  axios.put(config.path + `/${moment()}.json`, score);
 }
