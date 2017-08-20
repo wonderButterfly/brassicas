@@ -3,7 +3,9 @@
     ".read": "true",
     ".write": "true",
     "scores": {
-      ".validate": "newData.isNumber() && newData.val() >= 24"
+      "$date": {
+        ".validate": "newData.isNumber() && newData.val() >= 24"
+      }
     }
   }
 }
