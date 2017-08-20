@@ -77,7 +77,14 @@ export class DisplayingCard<T extends ActiveCard> extends Card {
   }
 }
 
-type ActiveSubCards = CabbageCard|BroccoliCard|CauliflowerCard|RomanescoCard|RedCabbageCard|BrusselsSproutCard|JokerCard;
+type ActiveSubCards = 
+  CabbageCard|
+  BroccoliCard|
+  CauliflowerCard|
+  RomanescoCard|
+  RedCabbageCard|
+  BrusselsSproutCard|
+  JokerCard;
 
 abstract class ActiveCard extends Card implements IActiveCard {
   readonly isSelected: boolean;
@@ -87,7 +94,7 @@ abstract class ActiveCard extends Card implements IActiveCard {
     super(path, true);
   }
 
-  abstract select(): any;
+  abstract select(): ActiveSubCards;
   abstract display(): DisplayingCard<ActiveSubCards>;
 }
 

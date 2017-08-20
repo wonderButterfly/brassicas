@@ -1,5 +1,5 @@
 import * as React from 'react';
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 import config from './config';
 import Chart from './Chart';
 
@@ -38,14 +38,24 @@ export default class ChartData extends React.Component<Props, State> {
   render() {
     const { loading, aggregates, intervals, selectedDate } = this.state;
     if (loading === null) return <img src="/assets/img/loading.svg" />;
-    return loading ? <Chart index={intervals} frequencies={aggregates} selectDate={this.selectDate} selectedDate={selectedDate} score={this.props.score} /> : null;
+    return loading 
+      ? (
+        <Chart 
+          index={intervals} 
+          frequencies={aggregates} 
+          selectDate={this.selectDate} 
+          selectedDate={selectedDate} 
+          score={this.props.score} 
+        />
+      ) 
+      : null;
   }
 
   componentDidMount() {
     this.handleData(axios.get(config.frequencyURL()));
   }
 
-  private handleData(promise: Promise<any>) {
+  private handleData(promise: AxiosPromise) {
     promise.then(({data}) => {
       this.setState({loading: true, aggregates: data.aggregates, intervals: data.intervals});
     }).catch(() => {
