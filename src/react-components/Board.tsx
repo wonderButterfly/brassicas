@@ -29,10 +29,10 @@ export default function Board({ order, click, cards, select, unselect, selected 
           key = (isSelected ? '+' : '-') + key;
           dispatch = isSelected ? () => {unselect(id); } : () => {select(id); };
         } else {
-          dispatch = () => { return };
+          dispatch = () => null;
         }
         
-        return <Card key={key} card={card} selectDispatch={click ? () => {} : dispatch}/>;
+        return <Card key={key} card={card} selectDispatch={click ? () => null : dispatch}/>;
       })}
     </div>
   );

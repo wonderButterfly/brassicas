@@ -19,7 +19,7 @@ export default function Card({ card, selectDispatch }: Props) {
   }
 }
 
-function FaceDownCard(isSelected: boolean, select: () => any) {
+function FaceDownCard(isSelected: boolean, select: () => void) {
   const selected = isSelected ? 'selected' : 'unselected';
   return <div className={`card card-facedown card-${selected}`} onClick={select} />;
 }

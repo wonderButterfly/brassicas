@@ -18,8 +18,10 @@ function initialize<T extends Cards>(card: T, code: string): T {
   return card.setId(code) as T;
 }
 
-export default function factory<T extends Cards>(c: { new(): T }, code: string): (card: T, action: Action) => T |InactiveCard | DisplayingCard<T> {
-  return function(card: T | DisplayingCard<T> = initialize(new c(), code), action: Action): T | InactiveCard | DisplayingCard<T> {
+export default function factory<T extends Cards>(c: { new(): T }, code: string): 
+(card: T, action: Action) => T |InactiveCard | DisplayingCard<T> {
+  return function(card: T | DisplayingCard<T> = initialize(new c(), code), action: Action):
+  T | InactiveCard | DisplayingCard<T> {
     switch (action.type) {
       case SELECT:
         if ((action as SelectAction).code === code) {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
+import { Dispatch, AnyAction } from 'redux';
 import { State } from '../internal/state';
 import { IBoard } from '../internal/board';
 import { ICard } from '../internal/card';
@@ -14,13 +15,21 @@ import { getSelectAction, getUnselectAction, reinitAction } from '../internal/ac
 
 class App extends React.Component<StateProps & DispatchProps, {}> {
   render() {
+
     return (
       <div className="App">
         <div className="App-header">
           <h1 className="App-title">Match the brassicas</h1>
         </div>
         <div>
-          <Board order={this.props.board.order} cards={this.props.cards} select={this.props.select} unselect={this.props.unselect} selected={this.props.selected} click={this.props.board.isClickDisabled}/>
+          <Board 
+            order={this.props.board.order} 
+            cards={this.props.cards} 
+            select={this.props.select} 
+            unselect={this.props.unselect} 
+            selected={this.props.selected} 
+            click={this.props.board.isClickDisabled}
+          />
         </div>
         {
           this.props.gameOver 
@@ -95,11 +104,11 @@ function mapStatetoProps(state: State): StateProps {
   };
 }
 
-function mapDispatchtoProps(dispatch: any): DispatchProps {
+function mapDispatchtoProps(dispatch: Dispatch<AnyAction>): DispatchProps {
   return {
-    select: (id: string): void => dispatch(getSelectAction(id)),
-    unselect: (id: string): void => dispatch(getUnselectAction(id)),
-    reinitalize: (): void => dispatch(reinitAction())
+    select: (id: string): AnyAction => dispatch(getSelectAction(id)),
+    unselect: (id: string): AnyAction => dispatch(getUnselectAction(id)),
+    reinitalize: (): AnyAction => dispatch(reinitAction())
   };
 }
 

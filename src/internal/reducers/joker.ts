@@ -3,8 +3,10 @@ import { JokerCard, DisplayingCard } from '../card';
 import { SelectAction } from '../actions';
 import { SELECT, REVERT, DISPLAY } from '../constants';
 
-export default function factory(code: string): (joker: JokerCard, action: Action) => JokerCard|DisplayingCard<JokerCard> {
-  return function jokerReducer(joker: JokerCard|DisplayingCard<JokerCard> = new JokerCard(), action: Action): JokerCard | DisplayingCard<JokerCard> {
+export default function factory(code: string): 
+(joker: JokerCard, action: Action) => JokerCard|DisplayingCard<JokerCard> {
+  return function jokerReducer(joker: JokerCard|DisplayingCard<JokerCard> = new JokerCard(), action: Action): 
+  JokerCard | DisplayingCard<JokerCard> {
     switch (action.type) {
       case SELECT:
         if ((action as SelectAction).code === code) return (joker as JokerCard).select();

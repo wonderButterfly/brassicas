@@ -43,10 +43,40 @@ export default function Chart({ index, frequencies, score, selectDate, selectedD
         View data from: {labels.map(AnchorTags)} 
       </h6>
       <div className="Chart-row Chart-row-above">
-        {index.map((range, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={range}>{range}</div>)}
+        {
+          index.map((range, i) => {
+            return (
+              <div 
+                className={
+                  i !== currentRange 
+                  ? 'Chart-cell' 
+                  : 'Chart-cell Chart-cell-highlight'
+                } 
+                key={range}
+              >
+                {range}
+              </div>
+            );
+          })
+        }
       </div>
       <div className="Chart-row Chart-row-below">
-        {frequencies.map((freq, i) => <div className={i !== currentRange ? 'Chart-cell' : 'Chart-cell Chart-cell-highlight'} key={i}>{freq}</div>)}
+        {
+          frequencies.map((freq, i) => {
+            return (
+              <div 
+                className={
+                  i !== currentRange 
+                  ? 'Chart-cell' 
+                  : 'Chart-cell Chart-cell-highlight'
+                } 
+                key={i}
+              >
+                {freq}
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );
