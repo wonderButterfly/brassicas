@@ -1332,6 +1332,10 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+disable-react-devtools@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/disable-react-devtools/-/disable-react-devtools-1.0.0.tgz#337cfd5cc6ba39885ac2bd58ae215f857d87458f"
+
 dns-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dns-equal/-/dns-equal-1.0.0.tgz#b39e7f1da6eb0a75ba9c17324b34753c47e0654d"

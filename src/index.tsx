@@ -4,6 +4,8 @@ import App from './react-components/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
+import 'disable-react-devtools';
+
 import store from './internal/store';
 
 import * as ReactRedux from 'react-redux';
