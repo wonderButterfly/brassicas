@@ -8,8 +8,7 @@ import 'disable-react-devtools';
 
 import store from './internal/store';
 
-import * as ReactRedux from 'react-redux';
-const { Provider } = ReactRedux;
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <Provider store={store}>
